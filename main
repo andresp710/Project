@@ -1,0 +1,65 @@
+sum1 = 0
+sum2 = 0
+totalSum = 0
+a = 0
+counter = 0
+romanIndex = {'I':1,'V':5,'X':10,'L':50,'C':100}
+# Index for converting back to roman numerials
+while counter == 0:
+    romanNum1 = input("Enter roman num: ")
+    romanNum2 = input("Enter num 2: ")
+    for i in romanNum1:
+        if (i == 'I') or (i== 'V') or (i=='X') or (i=='L') or (i=='C'):
+            counter = 1
+        else:
+            counter == 0
+            break
+    for i in romanNum2:
+        if (i == 'I') or (i== 'V') or (i=='X') or (i=='L') or (i=='C'):
+            counter = 1
+        else:
+            break
+    if counter == 1:
+        
+
+    #Convert Roman Numerals into a int sum
+        n = len(romanNum1)
+        for (idx, c) in enumerate(romanNum1):
+            if idx < n - 1 and romanIndex[c] < romanIndex[romanNum1[idx + 1]]:
+                sum1 -= romanIndex[c]
+            else:
+                sum1 += romanIndex[c]
+
+
+        n = len(romanNum2)
+        for (idx, c) in enumerate(romanNum2):
+            if idx < n - 1 and romanIndex[c] < romanIndex[romanNum2[idx + 1]]:
+                sum2 -= romanIndex[c]
+            else:
+                sum2 += romanIndex[c]
+    
+    totalSum = sum1 + sum2
+    if totalSum > 380:
+            
+        counter = 0
+        print("Some of the numbers were to high")
+        quit()
+    else:
+        counter = 1
+total1 = totalSum
+intToroman = { 1: 'I', 4: 'IV', 5: 'V', 9: 'IX', 10: 'X', 40: 'XL',
+              50: 'L', 90: 'XC', 100: 'C'}
+
+#Descending intger equivalent of five roman numerals 
+print_order = [400, 100, 90, 50, 40, 10, 9, 5, 4, 1]
+for x in print_order:
+    if totalSum != 0:
+        quotient= totalSum//x
+
+        #If quotient is not zero output the roman equivalent
+        if quotient != 0:
+            for y in range(quotient):
+                print(intToroman[x], end="")
+    totalSum = totalSum%x
+print(total1)
+
